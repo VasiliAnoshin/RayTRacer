@@ -42,7 +42,6 @@ import render.RendererFactory;
 public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
 	protected String aboutMessage;
 	protected File currentDir;
 	protected File sceneFile;
