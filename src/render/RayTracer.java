@@ -1,11 +1,10 @@
-package render.raytrace;
+package render;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
 import parser.SceneDescriptor;
-import render.IRenderer;
 
 public class RayTracer implements IRenderer {
 

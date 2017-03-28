@@ -1,7 +1,5 @@
 package render;
 
-import render.raytrace.RayTracer;
-
 /**
  * Returns the default renderer
  */
