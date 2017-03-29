@@ -54,10 +54,8 @@ public class spotLight extends Light{
 			return (Point3D.scale(super.m_color,1.0d/( (m_kc + m_kl * dist + m_kq * dist * dist) * (1.0d/L.dotProd(m_direction)))));
 		} else {
 			return (new Point3D(0,0,0));
-		}
-			
-	}
-	
+		}			
+	}	
 	@Override
 	public Point3D getOrigin() {
 		return m_pos.clone();
