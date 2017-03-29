@@ -5,14 +5,14 @@ import math.Point3D;
 import math.Vec;
 
 public class DirectionalLight extends Light{
-	
-	Vec m_direction; // direction in which the light shines at.
+	// direction in which the light shines at , this type of Light remind SUN 
+	Vec m_direction; 
 	
 	public DirectionalLight(Map<String, String> attributes) {
 		super(attributes);
 		
 		String i_stDir = attributes.get("direction");
-		if (i_stDir != null) 
+		if (i_stDir == null) 
 			i_stDir = attributes.get("dir");
 		if (i_stDir == null)
 			System.err.println("Directional light missint direction attribute");

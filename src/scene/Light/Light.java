@@ -5,7 +5,8 @@ import math.Point3D;
 import math.Vec;
 
 public abstract class Light {
-	protected Point3D m_color; // I 0 from the slides. default = (1,1,1) - white.
+	//I0 from the slides. default = (1,1,1) - white.
+	protected Point3D m_color; 
 	
 	public Light(Map<String, String> attributes) {
 		String i_stColor = attributes.get("color");
