@@ -5,7 +5,7 @@ import math.Point3D;
 import math.Vec;
 
 public abstract class Light {
-	//I0 from the slides. default = (1,1,1) - white.
+	//Color of the light : I0 from the slides. default = (1,1,1) - white.
 	protected Point3D m_color; 
 	
 	public Light(Map<String, String> attributes) {
@@ -19,8 +19,10 @@ public abstract class Light {
 	public Light() {
 		m_color = new Point3D(1.0d, 1.0d, 1.0d);
 	}
-	
+	//Light Intensity
 	public abstract Point3D getIntensityAtPoint(Point3D point);
-	public abstract Point3D getOrigin(); // can be null
-	public abstract Vec getDirection(); // 
+	// Position can be null , for example for Sun.
+	public abstract Point3D getOrigin();
+	//Direction , can be null for pointLight for example. 
+	public abstract Vec getDirection();  
 }

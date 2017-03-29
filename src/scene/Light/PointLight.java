@@ -7,7 +7,6 @@ import math.Vec;
 
 public class PointLight extends Light{
 	//position specific in the scene , this type of Light remind LAMP.	
-	//TODO DELETE ? The same point defined in the upper class. 
 	Point3D m_pos; 
 	//Attenuation (Ослабление) - (3 numbers- kc ,kl , kq ) the Default = (1,0,0) - no attenuation, only constant factor.
 	//Attenuation depends on distance of the Lamp from the object. 
@@ -35,21 +34,20 @@ public class PointLight extends Light{
 			m_kl = Double.parseDouble(i_stAttenuation);
 		i_stAttenuation = attributes.get("kq");
 		if (i_stAttenuation!=null)
-			m_kq = Double.parseDouble(i_stAttenuation);
-		
+			m_kq = Double.parseDouble(i_stAttenuation);		
 	}
-
+	//Compute intensity of the light due to the formula I0 = I/(kc+kl*d +kq*d^2 )
 	@Override
 	public Point3D getIntensityAtPoint(Point3D point) {
 		double dist = new Vec(point,m_pos).length();
 		return (Point3D.scale(super.m_color,1.0d/(m_kc + m_kl * dist + m_kq * dist * dist)));
 	}
-
+	// Get the light position
 	@Override
 	public Point3D getOrigin() {
 		return m_pos.clone();
 	}
-
+	//there is no direction in the PointLight. 
 	@Override
 	public Vec getDirection() {
 		return null;
