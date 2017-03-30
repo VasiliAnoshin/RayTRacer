@@ -12,7 +12,7 @@ public abstract class Surface {
 	 * (material)-diffuse - (rgb) the diffuse part of a flat material (K D ) default = (0.7, 0.7, 0.7)
 	 * (material)-specular - (rgb) the specular part of the material (K S ) default = (1, 1, 1)
 	 * (material)-ambient - (rgb) the ambient part of the material (K A ) default = (0.1, 0.1, 0.1)
-	 * (material)-emission - (rgb) the emission part of the material (I E ) default = (0, 0, 0)
+	 * (material)- emission - (rgb) the emission part of the material (I E ) default = (0, 0, 0)
 	 * (material)-shininess - (number) the power of the (V ∙ R ) in the formula (n). default = 100
 	 * reflectance - (number) the reflectance coefficient of the material. K S from slides. default = 0 (no reflectance).
 	 */
