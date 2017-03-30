@@ -5,15 +5,19 @@ import java.util.Map;
 import math.*;
 
 public class Camera {
-	
-	private Point3D m_eye; //p0
-	private Vec m_direction; // towards 
+	//p0
+	private Point3D m_eye; 
+	// towards
+	private Vec m_direction;  
 	//private Point3D m_lookAt; //look-at
-	private Vec m_upDirection; //up-direction, camera.up vector
-	private double m_screenDist; //screen-dist, vector.dist 
-	private double m_screenWidth; //screen-width, camera (frustum).width, default = 2.0
-	
-	private Vec m_rightDirection; // m_direction X m_upDirection
+	//up-direction, camera.up vector
+	private Vec m_upDirection; 
+	 //screen-dist, vector.dist 
+	private double m_screenDist;
+	//screen-width, camera (frustum).width, default = 2.0
+	private double m_screenWidth; 
+	// m_direction X m_upDirection
+	private Vec m_rightDirection; 
 	
 	private int m_halfCanvasHeight; 
 	private int m_halfCanvasWidth;
