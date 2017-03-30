@@ -24,6 +24,7 @@ public abstract class Surface {
 	protected int m_mtlShininess; // mtl-shininess n, (V ∙ R )^(n) power, default = 100
 	protected double m_mtlReflectance; //reflectance (K S), default = 0 (no reflectance).
 	
+	//definitions for the 
 	public Surface(Map<String, String> attributes) {
 		String i_stMtlDiffuse = attributes.get("mtl-diffuse");
 		String i_stMtlSpecular = attributes.get("mtl-specular");
