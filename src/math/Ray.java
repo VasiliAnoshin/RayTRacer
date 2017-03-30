@@ -3,9 +3,9 @@ package math;
 public class Ray {
 
 	// point of origin
-	 public Point3D p; 
+	 private Point3D p; 
 	// ray direction
-	 public Vec v; 
+	 private Vec v; 
 	
 	/**
 	 * constructs a new ray
@@ -18,4 +18,11 @@ public class Ray {
 		this.v = v.normalized();
 	}
 	
+	public Point3D m_pointOfOrigin(){
+		return this.p;
+	}
+	
+	public Vec m_rayDirection(){
+		return this.v;
+	}
 }

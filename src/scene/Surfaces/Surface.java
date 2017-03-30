@@ -9,20 +9,26 @@ import scene.Intersection;
 
 public abstract class Surface {
 	/*
-	 * mtl-diffuse - (rgb) the diffuse part of a flat material (K D ) default = (0.7, 0.7, 0.7)
-	 * mtl-specular - (rgb) the specular part of the material (K S ) default = (1, 1, 1)
-	 * mtl-ambient - (rgb) the ambient part of the material (K A ) default = (0.1, 0.1, 0.1)
-	 * mtl-emission - (rgb) the emission part of the material (I E ) default = (0, 0, 0)
-	 * mtl-shininess - (number) the power of the (V ∙ R ) in the formula (n). default = 100
+	 * (material)-diffuse - (rgb) the diffuse part of a flat material (K D ) default = (0.7, 0.7, 0.7)
+	 * (material)-specular - (rgb) the specular part of the material (K S ) default = (1, 1, 1)
+	 * (material)-ambient - (rgb) the ambient part of the material (K A ) default = (0.1, 0.1, 0.1)
+	 * (material)-emission - (rgb) the emission part of the material (I E ) default = (0, 0, 0)
+	 * (material)-shininess - (number) the power of the (V ∙ R ) in the formula (n). default = 100
 	 * reflectance - (number) the reflectance coefficient of the material. K S from slides. default = 0 (no reflectance).
 	 */
+	// mtl-diffuse (K D ) default = (0.7, 0.7, 0.7)
+	protected Point3D m_mtlDiffuse;  
+	// mtl-specular (K S ) default = (1, 1, 1)
+	protected Point3D m_mtlSpecular; 
+	// mtl-ambient (K A ) default = (0.1, 0.1, 0.1)
+	protected Point3D m_mtlAmbient;  
+	// mtl-emission (I E ) default = (0, 0, 0)
+	protected Point3D m_mtlEmission; 
+	// mtl-shininess n, (V ∙ R )^(n) power, default = 100
+	protected int m_mtlShininess;
+	//reflectance (K S), default = 0 (no reflectance).
+	protected double m_mtlReflectance; 
 	
-	protected Point3D m_mtlDiffuse;  // mtl-diffuse (K D ) default = (0.7, 0.7, 0.7)
-	protected Point3D m_mtlSpecular; // mtl-specular (K S ) default = (1, 1, 1)
-	protected Point3D m_mtlAmbient;  // mtl-ambient (K A ) default = (0.1, 0.1, 0.1)
-	protected Point3D m_mtlEmission; // mtl-emission (I E ) default = (0, 0, 0)
-	protected int m_mtlShininess; // mtl-shininess n, (V ∙ R )^(n) power, default = 100
-	protected double m_mtlReflectance; //reflectance (K S), default = 0 (no reflectance).
 	
 	//definitions for the 
 	public Surface(Map<String, String> attributes) {
