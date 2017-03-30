@@ -1,5 +1,80 @@
 package scene;
 
-public class Camera {
+import java.util.Map;
 
+import math.*;
+
+public class Camera {
+	
+	private Point3D m_eye; //p0
+	private Vec m_direction; // towards 
+	//private Point3D m_lookAt; //look-at
+	private Vec m_upDirection; //up-direction, camera.up vector
+	private double m_screenDist; //screen-dist, vector.dist 
+	private double m_screenWidth; //screen-width, camera (frustum).width, default = 2.0
+	
+	private Vec m_rightDirection; // m_direction X m_upDirection
+	
+	private int m_halfCanvasHeight; 
+	private int m_halfCanvasWidth;
+	private double m_pixelRatio;
+	private Point3D m_imageCenter;
+	
+	public Camera (Map<String, String> camAttributes, int canvasWidth, int canvasHeight) {
+		String i_stEye = camAttributes.get("eye");
+		String i_stDirection = camAttributes.get("direction");
+		String i_stLookAt = camAttributes.get("look-at");
+		String i_stUp = camAttributes.get("up-direction");
+		String i_stScrDist = camAttributes.get("screen-dist");
+		String i_stScrWidth = camAttributes.get("screen-width");
+		
+		if ( (i_stEye==null) || (i_stUp==null) || (i_stScrDist==null) || ((i_stDirection==null) && (i_stLookAt==null)) ) {
+			System.err.println("can't init camera:");
+			if (i_stEye==null) System.err.println("missing attribute - eye.");
+			if (i_stUp==null) System.err.println("missing attribute - up-direction.");
+			if (i_stScrDist==null) System.err.println("missing attribute - screen-dist.");
+			if ((i_stDirection==null) && (i_stLookAt==null)) System.err.print("missing attribute - direction or look-at.");	
+		} else {
+			m_eye = new Point3D(i_stEye);
+			
+			if (i_stDirection!=null)
+				m_direction = (new Vec(i_stDirection)).normalized();
+			else
+				m_direction = new Vec(m_eye,new Point3D(i_stLookAt)).normalized();
+			
+			m_upDirection =  new Vec(i_stUp).normalized();
+			m_rightDirection = Vec.crossProd(m_direction, m_upDirection).normalized();
+			m_upDirection = Vec.crossProd(m_rightDirection, m_direction);
+			
+			if (i_stScrWidth==null) 
+				m_screenWidth = 2.0d;
+			else
+				m_screenWidth = Double.parseDouble(i_stScrWidth);
+			
+			m_screenDist = Double.parseDouble(i_stScrDist);
+			
+			m_halfCanvasHeight = canvasHeight/2;
+			m_halfCanvasWidth = canvasWidth/2;
+			m_imageCenter = Point3D.add(m_eye,Vec.scale(m_direction,m_screenDist)); 
+			m_pixelRatio = m_screenWidth / canvasWidth;
+		}
+	}
+	
+	public Point3D getEyePos() {
+		return m_eye.clone();
+	}
+	
+	public Ray constructRayThroughPixel(double x, double y) {		
+		// pCenter = p0 + d*vTo
+		// Ratio (pixel width): 𝑅=𝑤/𝑅_𝑥 
+		// The central pixel is ⌊𝑅_𝑥/2⌋,⌊𝑅_𝑦/2⌋
+		// 𝑃=𝑃_𝑐+(𝑥−⌊𝑅_𝑥/2⌋)𝑅 𝑉_𝑟𝑖𝑔ℎ𝑡−(𝑦−⌊𝑅_𝑦/2⌋)𝑅 𝑉 ̃_𝑢𝑝
+		// 𝑉=𝑃−𝑃_0
+		
+		Vec i_right = Vec.scale(m_rightDirection,(x - m_halfCanvasWidth) * m_pixelRatio); 
+		//Vec i_up = Vec.scale(Vec.negate(m_upDirection),(y - m_halfCanvasHeight) * m_pixelRatio);
+		Vec i_up = Vec.scale(Vec.negate(m_upDirection),(y - m_halfCanvasHeight) * m_pixelRatio);
+		Vec i_rayVec =  Point3D.add(m_imageCenter,Vec.add(i_right,i_up)).sub(m_eye).normalized();
+		return new Ray(m_eye,i_rayVec);
+	}
 }
