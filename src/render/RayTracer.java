@@ -91,7 +91,7 @@ public class RayTracer implements IRenderer {
 			canvas.setRGB(x, y, traceRay(x, y).getRGB());
 		}
 	}
-
+	
 	@Override
 	public Color traceRay(int x, int y) {
 		Point3D colorPt = new Point3D(0,0,0);
