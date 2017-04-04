@@ -18,9 +18,12 @@ import scene.Surfaces.Surface;
 import scene.Surfaces.TriangleMesh;
 
 public class Scene {
-	private Point3D m_backgroundColor; //background-col; default = (0,0,0)
-	private int m_maxRecursionLevel; // max-recursion-level; Default = 10;
-	private Point3D m_ambientLight; // ambient-light. I AL; default = (0,0,0);
+	//background-col; default = (0,0,0)
+	private Point3D m_backgroundColor;
+	 // max-recursion-level; Default = 10;
+	private int m_maxRecursionLevel;
+	// ambient-light. I AL; default = (0,0,0);
+	private Point3D m_ambientLight; 
 	
 	private List<Surface> m_surfaces;
 	private List<Light> m_lights;
@@ -121,7 +124,8 @@ public class Scene {
 		
 		Point3D color = iSctSurface.getEmissionFactors();
 		color.add(Point3D.mult(iSctSurface.getAmbientFactors(),m_ambientLight));
-		Vec i_vToViewer = new Vec(eyePos,iSctPt).normalized(); //negate??
+		//negate??
+		Vec i_vToViewer = new Vec(eyePos,iSctPt).normalized(); 
 		
 		Vec i_normal = iSct.getNormalOnSurface();
 
@@ -134,10 +138,10 @@ public class Scene {
 			} else {
 				i_vToLight = new Vec(iSctPt,light.getOrigin()).normalized();
 			}
-			
+			//Get Specular and Diffuse colors
 			if (!lightIsOccluded(light, iSct)) {
 				Point3D iL = light.getIntensityAtPoint(iSctPt);
-
+				//check that two vectors are at the right angles to each other != 90degrees.
 				if ((dotP = Vec.dotProd(i_normal, i_vToLight))>0.00001d)
 					color.add(Point3D.scale(Point3D.mult(iSctSurface.getDiffuseFactors(),iL),dotP));
 		    
