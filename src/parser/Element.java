@@ -8,15 +8,15 @@ import java.util.Map;
  */
 public class Element {
 
-	public Element(String name) {
-		this.name = name;
-		attributes = new HashMap<String, String>();
-	}
-
 	protected String name;
 
 	protected Map<String, String> attributes;
 
+	public Element(String name) {
+		this.name = name;
+		attributes = new HashMap<String, String>();
+	}
+	
 	public String getName() {
 		return name;
 	}
