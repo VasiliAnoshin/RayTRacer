@@ -24,6 +24,12 @@ public class Camera {
 	private double m_pixelRatio;
 	private Point3D m_imageCenter;
 	
+	/**
+	 * Attributes + Imageresolution( 𝑅↓𝑥 × 𝑅↓𝑦 )
+	 * @param camAttributes
+	 * @param canvasWidth
+	 * @param canvasHeight
+	 */	  	 
 	public Camera (Map<String, String> camAttributes, int canvasWidth, int canvasHeight) {
 		String i_stEye = camAttributes.get("eye");
 		String i_stDirection = camAttributes.get("direction");
@@ -44,26 +50,28 @@ public class Camera {
 			if (i_stDirection!=null)
 				m_direction = (new Vec(i_stDirection)).normalized();
 			else
-				m_direction = new Vec(m_eye,new Point3D(i_stLookAt)).normalized();
-			
+				m_direction = new Vec(m_eye,new Point3D(i_stLookAt)).normalized();			
 			m_upDirection =  new Vec(i_stUp).normalized();
+			//What if the user provide us not perpendicular , not normalized  𝑉↓𝑡𝑜 , 𝑉↓𝑢𝑝 ? 
 			m_rightDirection = Vec.crossProd(m_direction, m_upDirection).normalized();
 			m_upDirection = Vec.crossProd(m_rightDirection, m_direction);
-			
+			//Plane width(𝑤)
 			if (i_stScrWidth==null) 
 				m_screenWidth = 2.0d;
 			else
 				m_screenWidth = Double.parseDouble(i_stScrWidth);
-			
+			//Distance to plane (𝑑) 
 			m_screenDist = Double.parseDouble(i_stScrDist);
 			
+			//Only the screen width is specified. The screen height needs to be deduced according to
+			//the aspect-ratio of the canvas.
 			m_halfCanvasHeight = canvasHeight/2;
 			m_halfCanvasWidth = canvasWidth/2;
 			m_imageCenter = Point3D.add(m_eye,Vec.scale(m_direction,m_screenDist)); 
 			m_pixelRatio = m_screenWidth / canvasWidth;
 		}
 	}
-	
+	//get eye position
 	public Point3D getEyePos() {
 		return m_eye.clone();
 	}
@@ -79,6 +87,8 @@ public class Camera {
 		//Vec i_up = Vec.scale(Vec.negate(m_upDirection),(y - m_halfCanvasHeight) * m_pixelRatio);
 		Vec i_up = Vec.scale(Vec.negate(m_upDirection),(y - m_halfCanvasHeight) * m_pixelRatio);
 		Vec i_rayVec =  Point3D.add(m_imageCenter,Vec.add(i_right,i_up)).sub(m_eye).normalized();
+		//Vector is a direction and a magnitude (for example, 10 m north-east). 
+		//A ray is just a direction and a starting point, and it has infinite length.
 		return new Ray(m_eye,i_rayVec);
 	}
 }
