@@ -7,3 +7,6 @@ The objective of this exercise is to implement a ray casting/tracing engine. A r
 rays from the observer’s eye through a screen and into a scene of objects. It calculates the ray’s
 intersection with the objects, finds the nearest intersection and calculates the color of the
 surface according to its material and lighting conditions. 
+
+![speres](https://cloud.githubusercontent.com/assets/9945039/24774963/a63c9aba-1b23-11e7-964a-27d33f01ffc4.jpg)
+
