@@ -1,4 +1,4 @@
-Overview:
+<p>Overview:</p>
 The concept of ray tracing: a technique for generating an image by tracing the path of light
 through pixels in an image plane and simulating the effects of its encounters with virtual
 objects. The technique is capable of producing a very high degree of visual realism, usually
