@@ -10,3 +10,5 @@ surface according to its material and lighting conditions.
 
 ![speres](https://cloud.githubusercontent.com/assets/9945039/24774963/a63c9aba-1b23-11e7-964a-27d33f01ffc4.jpg)
 
+![multi](https://cloud.githubusercontent.com/assets/9945039/24774975/b5ff25a8-1b23-11e7-8a94-be23d6df4ab1.jpg)
+
