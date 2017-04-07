@@ -13,3 +13,6 @@ surface according to its material and lighting conditions.
 ![multi](https://cloud.githubusercontent.com/assets/9945039/24774975/b5ff25a8-1b23-11e7-8a94-be23d6df4ab1.jpg)
 
 ![diffuse](https://cloud.githubusercontent.com/assets/9945039/24775049/fe5145ca-1b23-11e7-8239-35e73001609e.jpg)
+
+![4-02](https://cloud.githubusercontent.com/assets/9945039/24789221/ada65f82-1b7a-11e7-84e1-26f34fa0e982.png)
+
